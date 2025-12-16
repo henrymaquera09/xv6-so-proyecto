@@ -6,6 +6,17 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
+extern int trace_syscalls;
+int
+sys_trace(void)
+{
+ int flag;
+ if(argint(0, &flag)<0)
+  return -1;
+ trace_syscalls = flag;
+ return 0;
+}
+
 
 int
 sys_fork(void)
@@ -88,4 +99,22 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
+}
+
+int
+sys_psinfo(void)
+{
+ psinfo();
+ return 0;
+}
+extern int syscall_count[];
+int
+sys_getsyscount(void)
+{
+ int num;
+ if(argint(0,&num) < 0)
+  return -1;
+ if(num == -1)
+  return -2;
+ return syscall_count[num];
 }

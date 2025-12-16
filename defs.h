@@ -95,6 +95,7 @@ void            mpinit(void);
 void            picenable(int);
 void            picinit(void);
 
+int sys_getsyscount(void);
 // pipe.c
 int             pipealloc(struct file**, struct file**);
 void            pipeclose(struct pipe*, int);
@@ -185,6 +186,7 @@ void            switchuvm(struct proc*);
 void            switchkvm(void);
 int             copyout(pde_t*, uint, void*, uint);
 void            clearpteu(pde_t *pgdir, char *uva);
-
+void psinfo(void);
 // number of elements in fixed-size array
 #define NELEM(x) (sizeof(x)/sizeof((x)[0]))
+int sys_trace(void);

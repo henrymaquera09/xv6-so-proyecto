@@ -532,3 +532,24 @@ procdump(void)
     cprintf("\n");
   }
 }
+void
+psinfo(void)
+{
+ struct proc *p;
+ char *state;
+
+ cprintf("PID\tSTATE\t\tNAME\n");
+ 
+ for(p = ptable.proc; p<&ptable.proc[NPROC];p++){
+  if(p -> state == UNUSED)
+   continue;
+  switch(p->state){
+   case SLEEPING: state = "SLEEPING"; break;
+   case RUNNABLE: state = "RUNNABLE"; break;
+   case RUNNING: state = "RUNNING"; break;
+   case ZOMBIE: state = "ZOMBIE"; break;
+   default:    state = "UNKNOWN";
+}
+ cprintf("%d\t%s\t\t%s\n", p->pid, state, p->name);
+ }
+}
