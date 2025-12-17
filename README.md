@@ -26,15 +26,15 @@ Se desarrollaron tres entregables principales:
 - GCC
 
 ### Compilacion
-make clean
-make
+- make clean
+- make
 
 ## Ejecucion
-make qemu
+- make qemu
 
 ## Comandos disponibles en XV6
-trace 1
-trace 0
-psinfo
-syscount
-syscount <id_syscall>
+- trace 1
+- trace 0
+- psinfo
+- syscount
+- syscount <id_syscall>
